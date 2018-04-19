@@ -2,9 +2,9 @@
 
 Code for reproducing the results in the following paper:
 
-**Premise Selection for Theorem Proving by Deep Graph Embedding**  
-Mingzhe Wang\*, Yihe Tang\*, Jian Wang, Jia Deng (*equal contribution)  
-*Neural Information Processing Systems (NIPS), 2017*  
+**Premise Selection for Theorem Proving by Deep Graph Embedding**
+Mingzhe Wang\*, Yihe Tang\*, Jian Wang, Jia Deng (*equal contribution)
+*Neural Information Processing Systems (NIPS), 2017*
 
 ## Package dependency
 - Python3
@@ -23,14 +23,14 @@ tar -xvzf holstep.tgz
 ## Generating graph representations
 After downloading the HolStep dataset, we generate and save graph representations for `train`, `valid`, and `test` in `data/hol_data`.
 
-By default, we use 7% of the data in the training set as the validation set. The training and validation set do not share conjectures. 
+By default, we use 7% of the data in the training set as the validation set. The training and validation set do not share conjectures.
 
 ```bash
 mkdir data/hol_data
-python src/data_util/generate_hol_dataset.py data/hol_raw_data data/hol_data
+python3 src/data_util/generate_hol_dataset.py data/raw_data/holstep data/hol_data
 ```
 
-Run `python src/data_util/generate_hol_dataset.py -h` for more options.
+Run `python3 src/data_util/generate_hol_dataset.py -h` for more options.
 
 ## Pretrained models
 
@@ -47,24 +47,24 @@ To train a FormulaNet-basic model, please run:
 
 ```bash
 cd src
-python batch_train.py  --log training.log --output model --record train_record
+python3 batch_train.py  --log training.log --output model --record train_record
 ```
 
 To train a FormulaNet model, please run:
 
 ```bash
 cd src
-python batch_train.py  --log training.log --output model --record train_record --binary
+python3 batch_train.py  --log training.log --output model --record train_record --binary
 ```
 
 Option `--binary` turns on the order-preserving terms.
 
-Run `python batch_train.py -h` and check `scripts/train_example.sh` for more options.
+Run `python3 batch_train.py -h` and check `scripts/train_example.sh` for more options.
 
 ## Evaluation
 ```bash
 cd src
-python batch_test.py --model MODEL_FILE  # The file name, such as FormulaNet-basic-uc
+python3 batch_test.py --model MODEL_FILE  # The file name, such as FormulaNet-basic-uc
 ```
 
 Check `scripts/test_example.sh` for commands to test the pretrained models.
